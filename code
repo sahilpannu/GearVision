@@ -1,0 +1,331 @@
+int seg_Pins[] = {13, 12, 11, 10, 9, 8, 7, 6}; // { a b c d e f g . )
+
+int pot_map;
+
+int pot_input;
+
+////MOTOR1 PINS
+
+int ena = 5;
+
+int in1 = 3;
+
+int in2 = 4;
+
+byte seg_Code[11][8] = {
+
+  //  a  b  c  d  e  f  g  .
+
+  { 1, 1, 1, 1, 1, 1, 0, 1},  // 0
+
+  { 0, 1, 1, 0, 0, 0, 0, 0},  // 1
+
+  { 1, 1, 0, 1, 1, 0, 1, 0},  // 2
+
+  { 1, 1, 1, 1, 0, 0, 1, 0},  // 3
+
+  { 0, 1, 1, 0, 0, 1, 1, 0},  // 4
+
+  { 1, 0, 1, 1, 0, 1, 1, 0},  // 5
+
+  { 1, 0, 1, 1, 1, 1, 1, 0},  // 6
+
+  { 1, 1, 1, 0, 0, 0, 0, 0},  // 7
+
+  { 1, 1, 1, 1, 1, 1, 1, 0},  // 8
+
+  { 1, 1, 1, 1, 0, 1, 1, 0},  // 9
+
+  { 0, 0, 0, 0, 0, 0, 0, 1}   // .
+
+};
+
+void setup()
+
+{
+
+  pinMode(A1, INPUT); 
+
+  pinMode(ena, OUTPUT);
+
+  pinMode(in1, OUTPUT);
+
+  pinMode(in2, OUTPUT);
+
+   for (int i = 0; i < 8; i++)
+
+  {
+
+    pinMode(seg_Pins[i], OUTPUT);
+
+  }
+
+  Serial.begin(9600);
+
+}
+
+void loop()
+
+{
+
+  pot_input = analogRead(A1);
+
+  pot_map= map(pot_input, 0, 1023, 0 , 255);
+
+  //Serial.println(pot_input);
+
+  Serial.println(pot_map);
+
+  delay(300);
+
+if ((pot_map > 1) && (pot_map <= 25))
+
+  {  
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);  
+
+   for (int n = 1; n < 2; n++)    
+
+   {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay 
+
+  }
+
+  } 
+
+  else if ((pot_map > 25) && (pot_map <= 50))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+   for (int n = 2; n < 3; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay  
+
+  }  
+
+  }
+
+ else if ((pot_map > 50) && (pot_map <= 75))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+   for (int n = 3; n < 4; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay
+
+  }    
+
+  }
+
+  else if ((pot_map > 75) && (pot_map <= 100))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+ for (int n = 4; n < 5; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay
+
+  } 
+
+  }
+
+ else  if ((pot_map > 100) && (pot_map <= 125))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+  for (int n = 5; n < 6; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay  
+
+  }  
+
+  }
+
+ else if ((pot_map > 125) && (pot_map <= 150))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+  for (int n = 6; n < 7; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay
+
+  } 
+
+  }
+
+   else if ((pot_map > 150) && (pot_map <= 175))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+  for (int n = 7; n < 8; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay 
+
+  }   
+
+  }
+
+  else if ((pot_map > 175) && (pot_map <= 200))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+  for (int n = 8; n < 9; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay
+
+  }    
+
+  }
+
+  else if ((pot_map > 200) && (pot_map <= 225))
+
+  {
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+ for (int n = 9; n < 10; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay 
+
+  } 
+
+  }
+
+   else if ((pot_map > 225) && (pot_map <= 255))
+
+  { 
+
+  digitalWrite(in1,LOW);
+
+  digitalWrite(in2,HIGH);
+
+  analogWrite(ena, pot_map);
+
+  for (int n = 10; n < 11; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///1 second delay
+
+  } 
+
+  }
+
+ else
+
+ {
+
+  for (int n = 0; n < 1; n++)    
+
+  {
+
+    display_Digit(n);
+
+    delay(2000); ///2 second delay 
+
+  }
+
+ }
+
+}
+
+void display_Digit(int digit)
+
+{
+
+  for (int i = 0; i < 8; i++)
+
+  {
+
+    digitalWrite(seg_Pins[i], seg_Code[digit][i]); 
+
+}
+
+}
